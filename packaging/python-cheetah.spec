@@ -9,6 +9,7 @@ Group:          Development/Libraries
 License:        MIT
 URL:            http://cheetahtemplate.org/
 Source:         http://pypi.python.org/packages/source/C/Cheetah/Cheetah-%{version}.tar.gz
+Source1001: packaging/python-cheetah.manifest 
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,6 +32,7 @@ code, Java, sql, form emails and even Python code.
 %setup -q -n Cheetah-%{version}
 
 %build
+cp %{SOURCE1001} .
 export CHEETAH_USE_SETUPTOOLS=1
 %{__python} setup.py build
 
@@ -52,9 +54,11 @@ rm -rf %{buildroot}
 
 %if 0%{?suse_version}
 %files -f INSTALLED_FILES
+%manifest python-cheetah.manifest
 %defattr(-,root,root,-)
 %else
 %files
+%manifest python-cheetah.manifest
 %defattr(-,root,root,-)
 %dir %{python_sitearch}/Cheetah
 %{python_sitearch}/Cheetah/*.py
