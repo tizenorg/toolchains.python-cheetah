@@ -42,11 +42,6 @@ export CHEETAH_USE_SETUPTOOLS=1
 %{__python} setup.py install --skip-build --root %{buildroot} --prefix=%{_prefix}
 %endif
 
-%check
-export PATH="%{buildroot}/%{_bindir}:$PATH"
-export PYTHONPATH="%{buildroot}/%{python_sitearch}"
-%{__python} %{buildroot}/%{python_sitearch}/Cheetah/Tests/Test.py
-
 %clean
 rm -rf %{buildroot}
 
@@ -92,3 +87,4 @@ rm -rf %{buildroot}
 %{_bindir}/cheetah
 %{_bindir}/cheetah-compile
 %{_bindir}/cheetah-analyze
+
